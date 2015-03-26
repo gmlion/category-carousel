@@ -3,9 +3,9 @@ if (!class_exists('CategoryCarousel')) {
 	class CategoryCarousel {
 	
 		function __construct() {
-			add_action( 'wp_enqueue_scripts', 'CategoryCarousel_scripts' );
-			add_action( 'wp_enqueue_scripts', 'CategoryCarousel_styles' );
-			add_shortcode( 'category-carousel', 'category_carousel_func' );
+			add_action( 'wp_enqueue_scripts', array($this, 'CategoryCarousel_scripts') );
+			add_action( 'wp_enqueue_scripts', array($this, 'CategoryCarousel_styles') );
+			add_shortcode( 'category-carousel', array($this, 'category_carousel_func') );
 		}
 		
 		function CategoryCarousel_scripts() {
@@ -44,11 +44,11 @@ if (!class_exists('CategoryCarousel')) {
 						<div class="slide <?php echo $firstSlide ? 'active' : ''; ?> ">
 							<?php $firstSlide = false; ?>
 							<div class="row">
-								<div class="large-4 columns text-container <?php echo $a['inverted'] ? 'large-push-8' : ''; ?> ">
+								<div class="large-4 columns text-container <?php echo $a['inverted'] ? 'large-push-8 inverted' : ''; ?> ">
 									<?php the_title(); ?>
 									<?php the_content(); ?>
 								</div>
-								<div class="large-8 columns image-container <?php echo $a['inverted'] ? 'large-pull-4' : ''; ?> "> 
+								<div class="large-8 columns image-container <?php echo $a['inverted'] ? 'large-pull-4 inverted' : ''; ?> "> 
 								<?php if ( has_post_thumbnail() ) {
 										the_post_thumbnail();
 										} ?>
@@ -71,8 +71,8 @@ if (!class_exists('CategoryCarousel')) {
 						 */
 						wp_reset_postdata(); ?>	
 					</div>
-					<div class="arrow arrow-left arrow-left-<?php echo $a['category_name'] ?>" data-activecategory="<?php echo $a['category_name'] ?>"></div>
-					<div class="arrow arrow-right arrow-right-<?php echo $a['category_name'] ?>" data-activecategory="<?php echo $a['category_name'] ?>"></div>
+					<div class="arrow arrow-left arrow-left-<?php echo $a['category_name'] ?> <?php echo $a['inverted'] ? 'inverted' : '' ?>" data-activecategory="<?php echo $a['category_name'] ?>"></div>
+					<div class="arrow arrow-right arrow-right-<?php echo $a['category_name']?> <?php echo $a['inverted'] ? 'inverted' : '' ?>" data-activecategory="<?php echo $a['category_name'] ?>"></div>
 				</div>
 			</div>
 			<script>
