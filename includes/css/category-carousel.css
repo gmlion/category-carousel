@@ -185,25 +185,44 @@
 }
 
 .arrow:hover {
-	border-color:#93278f;
+	border-color:#FFD300;
 }
 
 .arrow-left {
-  	left: 22.5rem;
   	transform:rotate(225deg);
-}
-
-.arrow-left.inverted {
-	left: 1.5rem;
+  	left: 1.5rem;
 }
 
 .arrow-right {
-  	right:1.5rem;
   	transform:rotate(45deg);
+  	right: 1.5rem;
 }
 
-.arrow-right.inverted {
-	right: 22.5rem;
+
+@media only screen and (min-width: 64.063em) {
+	
+	.arrow-left {
+	  	left: 22.5rem;
+	}
+
+	.arrow-right {
+	  	right:1.5rem;
+	}
+	
+	.arrow-left.inverted {
+		left: 1.5rem;
+	}
+	
+	.arrow-right.inverted {
+		right: 22.5rem;
+	}
+
+
 }
 
+.read-more-link {
+	position: absolute;
+	right: 0.9rem;
+	bottom: 0.9rem;
+}
 

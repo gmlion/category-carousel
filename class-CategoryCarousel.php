@@ -45,8 +45,9 @@ if (!class_exists('CategoryCarousel')) {
 							<?php $firstSlide = false; ?>
 							<div class="row">
 								<div class="large-4 columns text-container <?php echo $a['inverted'] ? 'large-push-8 inverted' : ''; ?> ">
-									<?php the_title(); ?>
-									<?php the_content(); ?>
+									<h3><?php the_title(); ?></h3>
+									<?php /*the_content();*/ the_excerpt(); ?>
+									<br><a class="read-more-link" href="<?php the_permalink(); ?>"><?php _e('Learn more >', 'category-carousel' ); ?></a>
 								</div>
 								<div class="large-8 columns image-container <?php echo $a['inverted'] ? 'large-pull-4 inverted' : ''; ?> "> 
 								<?php if ( has_post_thumbnail() ) {
