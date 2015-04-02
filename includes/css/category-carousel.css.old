@@ -220,9 +220,3 @@
 
 }
 
-.read-more-link {
-	position: absolute;
-	right: 0.9rem;
-	bottom: 0.9rem;
-}
-
