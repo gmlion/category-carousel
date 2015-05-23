@@ -243,9 +243,9 @@
 			if ( this.settings.activeCategory !== e.data.activeCategory ) return;
 		}*/
 		if ( typeof e != 'undefined' ) {
-			console.log($(e.target).data('activecategory'));
+			/*console.log($(e.target).data('activecategory'));
 			console.log(this.$el);
-			console.log(e);
+			console.log(e);*/
 			/*var activeCategory = $(e.target).data('activecategory');
 			if ( this.settings.activeCategory !== activeCategory ) return;*/
 		}
