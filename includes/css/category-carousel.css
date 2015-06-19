@@ -190,11 +190,13 @@
 
 .arrow-left {
   	transform:rotate(225deg);
+    -webkit-transform:rotate(225deg);
   	left: 1.5rem;
 }
 
 .arrow-right {
   	transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
   	right: 1.5rem;
 }
 
