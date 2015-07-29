@@ -1,7 +1,8 @@
 <?php
 if (!class_exists('CategoryCarousel')) {
 	class CategoryCarousel {
-	
+        private $postsNumber;
+        
 		function __construct() {
 			add_action( 'wp_enqueue_scripts', array($this, 'CategoryCarousel_scripts') );
 			add_action( 'wp_enqueue_scripts', array($this, 'CategoryCarousel_styles') );
@@ -30,6 +31,8 @@ if (!class_exists('CategoryCarousel')) {
 			$firstSlide = true;
 			$queryArgs = 'category_name=' . $a['category_name'];
 			$carousel_query = new WP_Query( $queryArgs );
+            $this->postsNumber = count($carousel_query->posts);
+            
 			ob_start();
 			?>
 						<div class="wrapper">
@@ -72,8 +75,10 @@ if (!class_exists('CategoryCarousel')) {
 						 */
 						wp_reset_postdata(); ?>	
 					</div>
+					<?php if ($this->postsNumber > 1) { ?>
 					<div class="arrow arrow-left arrow-left-<?php echo $a['category_name'] ?> <?php echo $a['inverted'] ? 'inverted' : '' ?>" data-activecategory="<?php echo $a['category_name'] ?>"></div>
 					<div class="arrow arrow-right arrow-right-<?php echo $a['category_name']?> <?php echo $a['inverted'] ? 'inverted' : '' ?>" data-activecategory="<?php echo $a['category_name'] ?>"></div>
+				    <?php } ?>
 				</div>
 			</div>
 			<script>
@@ -87,12 +92,16 @@ if (!class_exists('CategoryCarousel')) {
 				};
 				
 				jQuery(document).ready(function() {
-					jQuery('.category-carousel-<?php echo $a['category_name'] ?>').CategoryCarousel( args );
+                    /*Sizing*/
 					jQuery('.category-carousel-<?php echo $a['category_name'] ?>').css( 'padding-top', jQuery('.category-carousel-<?php echo $a['category_name'] ?> .row').height() );
+					
+                    <?php if ($this->postsNumber > 1) { ?>
+                    jQuery('.category-carousel-<?php echo $a['category_name'] ?>').CategoryCarousel( args );
 					
 					jQuery('body').on('click', '.arrow-right-<?php echo $a['category_name'] ?>', {direction: 'right'}, document.querySelector('.category-carousel-<?php echo $a['category_name'] ?>').CategoryCarousel.changeSlide);
 					jQuery('body').on('click', '.arrow-left-<?php echo $a['category_name'] ?>', {direction: 'left'}, document.querySelector('.category-carousel-<?php echo $a['category_name'] ?>').CategoryCarousel.changeSlide);
-				});
+				    <?php } ?>
+                });
 				
 				jQuery(window).resize(function() {
 					jQuery('.category-carousel-<?php echo $a['category_name'] ?>').css( 'padding-top', jQuery('.category-carousel-<?php echo $a['category_name'] ?> .row').height() );
